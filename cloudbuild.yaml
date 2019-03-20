@@ -20,6 +20,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   secretEnv:
   - DOCKERHUB_PASSWORD
+  entrypoint: 'bash'
   args:
   - ./scripts/push_dockerhub.sh
 
