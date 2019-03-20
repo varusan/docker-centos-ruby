@@ -1,21 +1,21 @@
 steps:
-- name: gcr.io/kaniko-project/executor
-  args:
-  - --destination=gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
-  - --cache=true
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: 
-  - pull
-  - gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
-
-- name: 'gcr.io/gcp-runtimes/container-structure-test'
-  args: 
-  - test 
-  - --image
-  - gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
-  - --config
-  - container-structure-test.yml
+# - name: gcr.io/kaniko-project/executor
+#   args:
+#   - --destination=gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
+#   - --cache=true
+# 
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: 
+#   - pull
+#   - gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
+# 
+# - name: 'gcr.io/gcp-runtimes/container-structure-test'
+#   args: 
+#   - test 
+#   - --image
+#   - gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
+#   - --config
+#   - container-structure-test.yml
 
 - name: 'gcr.io/cloud-builders/docker'
   secretEnv:
