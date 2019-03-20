@@ -1,19 +1,19 @@
 steps:
 - name: gcr.io/kaniko-project/executor
   args:
-  - --destination=gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME
+  - --destination=gcr.io/$PROJECT_ID/$REPO_NAME:$_BRANCH_NAME
   - --cache=true
 
 - name: 'gcr.io/cloud-builders/docker'
   args: 
   - pull
-  - gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME
+  - gcr.io/$PROJECT_ID/$REPO_NAME:$_BRANCH_NAME
 
 - name: 'gcr.io/gcp-runtimes/container-structure-test'
   args: 
   - test 
   - --image
-  - gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME
+  - gcr.io/$PROJECT_ID/$REPO_NAME:$_BRANCH_NAME
   - --config
   - container-structure-test.yml
 
@@ -29,13 +29,16 @@ steps:
   entrypoint: 'bash'
   args: 
   - -c
-  - docker tag gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME drecom/centos-ruby:$BRANCH_NAME
+  - docker tag gcr.io/$PROJECT_ID/$REPO_NAME:$_BRANCH_NAME drecom/centos-ruby:$_BRANCH_NAME
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: 
   - -c
-  - docker push drecom/centos-ruby:$BRANCH_NAME
+  - docker push drecom/centos-ruby:$_BRANCH_NAME
+
+substitutions:
+  _BRANCH_NAME: $BRANCH_NAME
 
 secrets:
 - kmsKeyName: projects/gcp-dre-dev/locations/global/keyRings/drecom-dockerhub/cryptoKeys/drecom-dockerhub
