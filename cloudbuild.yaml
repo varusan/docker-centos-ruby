@@ -38,7 +38,7 @@ steps:
 #   - docker push drecom/centos-ruby:$_BRANCH_NAME
 
 substitutions:
-  _BRANCH_NAME: $BRANCH_NAME
+  _BRANCH_NAME: BRANCH_NAME
 
 secrets:
 - kmsKeyName: projects/gcp-dre-dev/locations/global/keyRings/drecom-dockerhub/cryptoKeys/drecom-dockerhub
