@@ -31,11 +31,11 @@ steps:
   - -c
   - docker tag gcr.io/$PROJECT_ID/$REPO_NAME:$_BRANCH_NAME drecom/centos-ruby:$_BRANCH_NAME
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: 
-  - -c
-  - docker push drecom/centos-ruby:$_BRANCH_NAME
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: 
+#   - -c
+#   - docker push drecom/centos-ruby:$_BRANCH_NAME
 
 substitutions:
   _BRANCH_NAME: $BRANCH_NAME
