@@ -5,9 +5,9 @@ set -e
 set -x
 
 if [ ${BRANCH_NAME} = "master" ]; then
-  ${VERSION}="latest"
+  VERSION="latest"
 else
-  ${VERSION}=${BRANCH_NAME}
+  VERSION=${BRANCH_NAME}
 fi
 
 IMAGE_NAME=gcr.io/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}
